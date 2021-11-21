@@ -3,9 +3,7 @@
   <section class="main">
     <section class="main__container">
       <Stepper />
-      <section class="main__content">
-        <router-view />
-      </section>
+      <router-view />
       <Cart />
       <PageButton />
     </section>

@@ -1,4 +1,5 @@
 <template>
+<section class="main__content">
   <form action="" class="normalForm">
     <p class="normalForm__title">寄送地址</p>
     <div class="normalForm__content">
@@ -80,6 +81,7 @@
       </div>
     </div>
   </form>
+</section>
 </template>
 
 <script>
