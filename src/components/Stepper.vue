@@ -2,7 +2,7 @@
   <div class="main__top">
     <p class="main__title">結帳</p>
   </div>
-  <section class="stepper main__stepper pageOne isOpen">
+  <section class="stepper main__stepper">
     <div class="stepper__container">
       <div class="stepper__item">
         <span class="stepper__number stepper__number--active">1</span>

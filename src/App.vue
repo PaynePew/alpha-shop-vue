@@ -1,22 +1,37 @@
 <template>
   <Header />
-  <router-view />
+  <section class="main">
+    <section class="main__container">
+      <Stepper />
+      <section class="main__content">
+        <router-view />
+      </section>
+      <Cart />
+      <PageButton />
+    </section>
+  </section>
   <Footer />
 </template>
 
 <script>
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
+import Stepper from './components/Stepper.vue';
+import Cart from './components/Cart.vue';
+import PageButton from './components/PageButton.vue';
 
 export default {
   components: {
     Header,
     Footer,
+    Stepper,
+    Cart,
+    PageButton,
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 /* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
