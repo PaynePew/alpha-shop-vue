@@ -2,7 +2,7 @@
   <section class="main__content">
     <div class="radioForm">
       <p class="radioForm__title">運送方式</p>
-      <div class="radioForm__item">
+      <div class="radioForm__item" @click.stop="$emit('shipping',0)">
         <label for="customRadio-normal" class="radioForm__container">
           <input
             id="customRadio-normal"
@@ -21,7 +21,7 @@
           <div class="radioForm__focusBorder"></div>
         </label>
       </div>
-      <div class="radioForm__item">
+      <div class="radioForm__item" @click.stop="$emit('shipping',500)">
         <label for="customRadio-DHL" class="radioForm__container">
           <input
             id="customRadio-DHL"
@@ -32,7 +32,7 @@
           <span class="radioForm__radio"></span>
           <div class="radioForm__content">
             <div class="radioForm__des">
-              <span class="radioForm__text--bold">DHL貨運</span>
+              <span  class="radioForm__text--bold">DHL貨運</span>
               <span class="radioForm__text--small">48小時內送達</span>
             </div>
             <span class="radioForm__text--price">$500</span>
@@ -43,3 +43,7 @@
     </div>
   </section>
 </template>
+
+<script setup>
+const emit = defineEmits(['shipping']);
+</script>

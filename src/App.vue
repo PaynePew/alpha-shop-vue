@@ -5,6 +5,10 @@
       <Stepper />
       <router-view />
       <Cart />
+      <router-view
+      @shipping="handleShipping"
+      @after-submit="handleSubmit"
+      />
       <Cart
         :cart-store="cartStore"
         :total-price="totalPrice"
