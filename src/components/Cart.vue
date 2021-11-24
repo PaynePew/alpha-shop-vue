@@ -3,8 +3,8 @@
     <!-- cart start from here! -->
     <div class="cart">
       <p class="cart__title">購物籃</p>
-      <!-- :key不該使用id，但因為是dummydata不操作，很髒但方便 -->
-      <div v-for="item in cartStore" :key="item.id" class="cart__item">
+      <!-- :key不該使用Object.key，但因為是dummydata不操作，很髒但方便 -->
+      <div v-for="(item, id) in products" :key="id" class="cart__item">
         <div class="cart__imgFrame">
           <img
             :src="require(`@/assets/img/${item.picture}`)"
@@ -16,13 +16,9 @@
           <div class="cart__des">
             <p class="cart__name">{{ item.product }}</p>
             <div class="cart__count">
-              <span @click="$emit('downAmount', item.id)" class="cart__down"
-                >&#8722;</span
-              >
+              <span @click="downAmount(id)" class="cart__down">&#8722;</span>
               <span class="cart__number">{{ item.amount }}</span>
-              <span @click="$emit('addAmount', item.id)" class="cart__up"
-                >&#43;</span
-              >
+              <span @click="addAmount(id)" class="cart__up">&#43;</span>
             </div>
           </div>
           <div class="cart__price">${{ numbersWithCommas(item.price) }}</div>
@@ -41,17 +37,41 @@
 </template>
 
 <script setup>
-import { computed, toRef } from 'vue';
+import {
+  computed, onMounted, watch,
+} from 'vue';
+import { useStore } from 'vuex';
 import numbersWithCommas from '../utils/mixins';
+import {
+  ADD_AMOUNT, DOWN_AMOUNT, GET_PRODUCT, UPDATE_PRICE,
+} from '../store/mutation-types';
 
-const props = defineProps({
-  cartStore: Array,
-  totalPrice: Number,
-  shippingFee: Number,
-});
-const emit = defineEmits(['addAmount', 'downAmount']);
+const store = useStore();
+const products = computed(() => store.state.cart.products);
+const totalPrice = computed(() => store.state.cart.totalPrice);
+const shippingFee = computed(() => store.state.cart.shippingFee);
 
-const shippingFee = toRef(props, 'shippingFee');
+async function handleTotalPrice() {
+  const price = await store.getters.GET_PRODUCT.reduce(
+    (a, b) => a.amount * a.price + b.amount * b.price,
+  )
+    + shippingFee.value;
+  store.dispatch(UPDATE_PRICE, price);
+}
+async function addAmount(id) {
+  await store.dispatch(ADD_AMOUNT, id);
+}
+async function downAmount(id) {
+  await store.dispatch(DOWN_AMOUNT, id);
+}
 const freeOrNot = computed(() => (!shippingFee.value ? '免費' : `$${shippingFee.value}`));
+
+onMounted(async () => {
+  await handleTotalPrice();
+});
+
+watch(([products, shippingFee]), () => {
+  handleTotalPrice();
+}, { deep: true });
 
 </script>
