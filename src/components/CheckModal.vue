@@ -1,7 +1,7 @@
 <template>
   <transition name="checkModal">
-    <div @click="$emit('close')" class="checkModal__mask">
-      <div class="checkModal__wrapper">
+    <div  class="checkModal__mask">
+      <div @click.self="$emit('close')" class="checkModal__wrapper">
         <div class="checkModal__container">
           <div class="checkModal__header">
             <slot> 購買產品 </slot>
