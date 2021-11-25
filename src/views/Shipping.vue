@@ -10,6 +10,7 @@
             type="radio"
             class="radioForm__input"
             name="shipping"
+            :checked="shippingType==='normal'"
           />
           <span class="radioForm__radio"></span>
           <div class="radioForm__content">
@@ -29,6 +30,7 @@
             type="radio"
             class="radioForm__input"
             name="shipping"
+            :checked="shippingType==='DHL'"
           />
           <span class="radioForm__radio"></span>
           <div class="radioForm__content">
@@ -48,11 +50,13 @@
 
 <script setup>
 import { useStore } from 'vuex';
+import { computed } from 'vue';
 import Stepper from '../components/Stepper.vue';
 import PageButton from '../components/PageButton.vue';
 import { UPDATE_INFO, UPDATE_SHIPPING } from '../store/mutation-types';
 
 const store = useStore();
+const shippingType = computed(() => store.state.checkInfo.info.shippingType);
 
 async function updateShipping(charge, type) {
   const updateType = {
