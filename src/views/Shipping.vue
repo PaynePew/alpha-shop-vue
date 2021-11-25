@@ -58,3 +58,7 @@ function updateShipping(charge) {
   store.dispatch(UPDATE_SHIPPING, charge);
 }
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/scss/components/_radioForm"
+</style>

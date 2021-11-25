@@ -100,3 +100,8 @@ const store = useStore();
 const initCheckInfo = store.state.checkInfo.info;
 const checkInfo = { ...initCheckInfo };
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/scss/components/_normalForm";
+
+</style>

@@ -60,3 +60,7 @@ function prevPage() {
   router.push({ name: router.currentRoute.value.meta.prev });
 }
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/scss/components/_button"
+</style>

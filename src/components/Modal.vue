@@ -30,3 +30,8 @@
     </div>
   </section>
 </template>
+
+<style lang="scss" scoped>
+@import "@/assets/scss/components/_navbar";
+@import "@/assets/scss/components/_tool"
+</style>

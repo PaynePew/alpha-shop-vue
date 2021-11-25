@@ -73,3 +73,7 @@ watch(([products, shippingFee]), () => {
 }, { deep: true });
 
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/scss/components/_cart"
+</style>

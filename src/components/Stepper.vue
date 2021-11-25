@@ -70,5 +70,6 @@ function stepHelper(number) {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/scss/components/_stepper";
 </style>
