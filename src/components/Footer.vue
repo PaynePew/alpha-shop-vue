@@ -63,5 +63,5 @@
 
 <style lang="scss" scoped>
 @import "@/assets/scss/components/_menu";
-@import "@/assets/scss/components/_logo"
+@import "@/assets/scss/components/_logo";
 </style>
