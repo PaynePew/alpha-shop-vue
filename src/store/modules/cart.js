@@ -1,5 +1,11 @@
 import {
-  ADD_AMOUNT, DOWN_AMOUNT, GET_PRODUCT, UPDATE_PRICE, UPDATE_SHIPPING,
+  ADD_AMOUNT,
+  DOWN_AMOUNT,
+  GET_PRODUCT,
+  LOAD_LOCAL_CART,
+  SAVE_LOCAL_CART,
+  UPDATE_PRICE,
+  UPDATE_SHIPPING,
 } from '../mutation-types';
 // Hardcoding DummyData
 export default {
@@ -29,12 +35,25 @@ export default {
       : null),
     [UPDATE_SHIPPING]: (state, charge) => (state.shippingFee = charge),
     [UPDATE_PRICE]: (state, price) => state.totalPrice = price,
+    [SAVE_LOCAL_CART]: (state) => {
+      localStorage.setItem('cart', JSON.stringify(state));
+    },
+    [LOAD_LOCAL_CART]: (state) => {
+      if (localStorage.getItem('cart')) {
+        state.products = JSON.parse(localStorage.getItem('cart')).products;
+        state.productList = JSON.parse(localStorage.getItem('cart')).productList;
+        state.shippingFee = JSON.parse(localStorage.getItem('cart')).shippingFee;
+        state.totalPrice = JSON.parse(localStorage.getItem('cart')).totalPrice;
+      }
+    },
   },
   actions: {
     [ADD_AMOUNT]: ({ commit }, id) => commit(ADD_AMOUNT, id),
     [DOWN_AMOUNT]: ({ commit }, id) => commit(DOWN_AMOUNT, id),
     [UPDATE_SHIPPING]: ({ commit }, charge) => commit(UPDATE_SHIPPING, charge),
     [UPDATE_PRICE]: ({ commit }, price) => commit(UPDATE_PRICE, price),
+    [SAVE_LOCAL_CART]: ({ commit }) => commit(SAVE_LOCAL_CART),
+    [LOAD_LOCAL_CART]: ({ commit }) => commit(LOAD_LOCAL_CART),
   },
   getters: {
     [GET_PRODUCT]: (state) => state.productList.map((productId) => state.products[productId]),

@@ -14,10 +14,11 @@ import { useStore } from 'vuex';
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
 import Cart from './components/Cart.vue';
-import { LOAD_LOCAL } from './store/mutation-types';
+import { LOAD_LOCAL_CART, LOAD_LOCAL_INFO } from './store/mutation-types';
 
 const store = useStore();
-store.dispatch(LOAD_LOCAL);
+store.dispatch(LOAD_LOCAL_INFO);
+store.dispatch(LOAD_LOCAL_CART);
 
 </script>
 

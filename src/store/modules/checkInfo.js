@@ -1,4 +1,4 @@
-import { LOAD_LOCAL, SAVE_LOCAL, UPDATE_INFO } from '../mutation-types';
+import { LOAD_LOCAL_INFO, SAVE_LOCAL_INFO, UPDATE_INFO } from '../mutation-types';
 
 export default {
   state: {
@@ -21,19 +21,19 @@ export default {
       ...state.info,
       ...payload,
     }),
-    [SAVE_LOCAL]: (state) => {
-      localStorage.setItem('checkInfo', JSON.stringify(state.info));
+    [SAVE_LOCAL_INFO]: (state) => {
+      localStorage.setItem('checkInfo', JSON.stringify(state));
     },
-    [LOAD_LOCAL]: (state) => {
+    [LOAD_LOCAL_INFO]: (state) => {
       if (localStorage.getItem('checkInfo')) {
-        state.info = { ...state.info, ...JSON.parse(localStorage.getItem('checkInfo')) };
+        state.info = { ...state.info, ...JSON.parse(localStorage.getItem('checkInfo')).info };
       }
     },
   },
   actions: {
     [UPDATE_INFO]: ({ commit }, payload) => commit(UPDATE_INFO, payload),
-    [SAVE_LOCAL]: ({ commit }) => commit(SAVE_LOCAL),
-    [LOAD_LOCAL]: ({ commit }) => commit(LOAD_LOCAL),
+    [SAVE_LOCAL_INFO]: ({ commit }) => commit(SAVE_LOCAL_INFO),
+    [LOAD_LOCAL_INFO]: ({ commit }) => commit(LOAD_LOCAL_INFO),
   },
   getters: {},
 };

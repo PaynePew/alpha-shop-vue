@@ -43,7 +43,7 @@ import {
 import { useStore } from 'vuex';
 import numbersWithCommas from '../utils/mixins';
 import {
-  ADD_AMOUNT, DOWN_AMOUNT, GET_PRODUCT, UPDATE_PRICE,
+  ADD_AMOUNT, DOWN_AMOUNT, GET_PRODUCT, SAVE_LOCAL_CART, UPDATE_PRICE,
 } from '../store/mutation-types';
 
 const store = useStore();
@@ -54,7 +54,8 @@ async function handleTotalPrice() {
     (a, b) => a.amount * a.price + b.amount * b.price,
   )
     + shippingFee.value;
-  store.dispatch(UPDATE_PRICE, price);
+  await store.dispatch(UPDATE_PRICE, price);
+  await store.dispatch(SAVE_LOCAL_CART);
 }
 async function addAmount(id) {
   await store.dispatch(ADD_AMOUNT, id);
