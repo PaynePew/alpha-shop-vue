@@ -1,9 +1,9 @@
 <template>
-<Stepper :step="2"/>
+  <Stepper :step="2" />
   <section class="main__content">
     <div class="radioForm">
       <p class="radioForm__title">運送方式</p>
-      <div class="radioForm__item" @click="updateShipping(0)">
+      <div class="radioForm__item" @click="updateShipping(0, 'normal')">
         <label for="customRadio-normal" class="radioForm__container">
           <input
             id="customRadio-normal"
@@ -22,7 +22,7 @@
           <div class="radioForm__focusBorder"></div>
         </label>
       </div>
-      <div class="radioForm__item" @click="updateShipping(500)">
+      <div class="radioForm__item" @click="updateShipping(500, 'DHL')">
         <label for="customRadio-DHL" class="radioForm__container">
           <input
             id="customRadio-DHL"
@@ -50,15 +50,19 @@
 import { useStore } from 'vuex';
 import Stepper from '../components/Stepper.vue';
 import PageButton from '../components/PageButton.vue';
-import { UPDATE_SHIPPING } from '../store/mutation-types';
+import { UPDATE_INFO, UPDATE_SHIPPING } from '../store/mutation-types';
 
 const store = useStore();
 
-function updateShipping(charge) {
-  store.dispatch(UPDATE_SHIPPING, charge);
+async function updateShipping(charge, type) {
+  const updateType = {
+    shippingType: type,
+  };
+  await store.dispatch(UPDATE_SHIPPING, charge);
+  await store.dispatch(UPDATE_INFO, updateType);
 }
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/components/_radioForm"
+@import "@/assets/scss/components/_radioForm";
 </style>
