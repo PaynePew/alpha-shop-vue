@@ -37,7 +37,7 @@
 import { ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
-import { UPDATE_INFO } from '../store/mutation-types';
+import { SAVE_LOCAL, UPDATE_INFO } from '../store/mutation-types';
 import CheckModal from './CheckModal.vue';
 
 const props = defineProps({
@@ -48,8 +48,9 @@ const store = useStore();
 const router = useRouter();
 const showModal = ref(false);
 
-function updateInfo() {
-  store.dispatch(UPDATE_INFO, props.checkInfo);
+async function updateInfo() {
+  await store.dispatch(UPDATE_INFO, props.checkInfo);
+  await store.dispatch(SAVE_LOCAL);
 }
 
 function nextPage() {

@@ -5,3 +5,5 @@ export const UPDATE_PRICE = 'UPDATE_PRICE';
 export const UPDATE_SHIPPING = 'UPDATE_SHIPPING';
 export const UPDATE_INFO = 'UPDATE_INFO';
 export const GET_INFO = 'GET_INFO';
+export const SAVE_LOCAL = 'SAVE_LOCAL';
+export const LOAD_LOCAL = 'LOAD_LOCAL';

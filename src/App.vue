@@ -10,9 +10,14 @@
 </template>
 
 <script setup>
+import { useStore } from 'vuex';
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
 import Cart from './components/Cart.vue';
+import { LOAD_LOCAL } from './store/mutation-types';
+
+const store = useStore();
+store.dispatch(LOAD_LOCAL);
 
 </script>
 
