@@ -74,6 +74,11 @@
     }
   }
 
+  &__img {
+    width: 50%;
+    height: 50%;
+  }
+
   @include desktop {
     &__des {
       display: block;

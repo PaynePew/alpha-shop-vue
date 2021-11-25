@@ -1,4 +1,5 @@
 <template>
+<Stepper :step="1"/>
   <section class="main__content">
     <form action="" class="normalForm">
       <p class="normalForm__title">寄送地址</p>
@@ -92,6 +93,7 @@
 <script setup>
 import { useStore } from 'vuex';
 import PageButton from '../components/PageButton.vue';
+import Stepper from '../components/Stepper.vue';
 
 const store = useStore();
 // 初始info再宣告checkInfo不與Vuex響應，update時再做更新

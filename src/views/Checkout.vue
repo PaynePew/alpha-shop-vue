@@ -1,4 +1,5 @@
 <template>
+<Stepper :step="3"/>
   <section class="main__content">
     <form action="" class="normalForm">
             <p class="normalForm__title">付款資訊</p>
@@ -50,6 +51,7 @@
 <script setup>
 import { useStore } from 'vuex';
 import PageButton from '../components/PageButton.vue';
+import Stepper from '../components/Stepper.vue';
 
 const store = useStore();
 // 初始info再宣告checkInfo不與Vuex響應，update時再做更新

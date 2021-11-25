@@ -1,4 +1,5 @@
 <template>
+<Stepper :step="2"/>
   <section class="main__content">
     <div class="radioForm">
       <p class="radioForm__title">運送方式</p>
@@ -47,6 +48,7 @@
 
 <script setup>
 import { useStore } from 'vuex';
+import Stepper from '../components/Stepper.vue';
 import PageButton from '../components/PageButton.vue';
 import { UPDATE_SHIPPING } from '../store/mutation-types';
 

@@ -2,7 +2,6 @@
   <Header />
   <section class="main">
     <section class="main__container">
-      <Stepper />
       <router-view />
       <Cart />
     </section>
@@ -13,7 +12,6 @@
 <script setup>
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
-import Stepper from './components/Stepper.vue';
 import Cart from './components/Cart.vue';
 
 </script>
