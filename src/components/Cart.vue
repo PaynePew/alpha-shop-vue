@@ -38,7 +38,7 @@
 
 <script setup>
 import {
-  computed, onMounted, watch,
+  computed, onMounted, watch, toRefs,
 } from 'vue';
 import { useStore } from 'vuex';
 import numbersWithCommas from '../utils/mixins';
@@ -47,9 +47,7 @@ import {
 } from '../store/mutation-types';
 
 const store = useStore();
-const products = computed(() => store.state.cart.products);
-const totalPrice = computed(() => store.state.cart.totalPrice);
-const shippingFee = computed(() => store.state.cart.shippingFee);
+const { products, totalPrice, shippingFee } = toRefs(store.state.cart);
 
 async function handleTotalPrice() {
   const price = await store.getters.GET_PRODUCT.reduce(
